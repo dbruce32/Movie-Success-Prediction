@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: 'en-US' }}">
+<head>
+  <meta charset="UTF-8">
+  <title>Movie Success Prediction: Home</title>
+  <link rel="icon" type="image/png" href="./popcorn-png-9432.png">
+
+{% seo %}
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+  {% include head-custom.html %}
+
+  <style>
+    body {
+      display: flex;
+      margin: 0;
+    }
+
+    .main-content {
+      color: #000000
+    }
+
+    .page-header {
+    padding: 50px 0;
+    text-align: center;
+    color: white;
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.15);
+
+    border-radius: 25px;
+    
+    width: 100%;
+    position: relative;
+    left: 0;
+    right: 0;
+    margin: 0;
+    }
+
+    .page-header .project-name {
+    color: white;
+    }
+
+    .page-header .project-tagline {
+      color: white;
+      margin-left: 30px;
+      margin-right: 30px;
+      margin-top: 10px;
+    }
+
+    .intro-and-bg {
+      margin-top: 20px;
+    }
+
+    .video-embed-title {
+      margin-top: 20px;
+    }
+
+    .video-embed-title h1 {
+      font-weight: bold;
+    }
+
+    .video-embed {
+      margin-top: 20px;
+      position: sticky;
+    }
+
+    .h1 {
+      font-weight: 500;
+    }
+
+    .sidebar {
+      width: 250px;
+      height: 100vh;
+      background-color: #157878;
+      padding: 20px;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      top: 0;
+      left: 0;
+      color: white;
+    }
+
+    .sidebar h2 {
+      text-align: center;
+      color: white;
+    }
+
+    .sidebar a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      margin: 15px 0;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .sidebar a:hover {
+      background-color: #1e8c9e;
+    }
+
+    .main-content {
+      margin-left: 270px;
+      padding: 20px;
+      width: 100%;
+    }
+
+    .intro-and-bg h1 {
+      font-weight: bold;
+    }
+
+    .results-and-discussion h1 {
+      font-weight: bold;
+    }
+
+    .methods-header h1 {
+      font-weight: bold;
+    }
+
+    .references-header h1 {
+      font-weight: bold;
+    }
+
+    .contributions-header h1 {
+      font-weight: bold;
+    }
+
+  </style>
+</head>
+
+<body>
+  <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+  <!-- Sidebar Navigation -->
+  <div class="sidebar">
+    <h2>Navigation</h2>
+    <a href="./index.html">Home</a>
+    <a href="./proposalmd.html">Proposal</a>
+    <a href="./midtermmd.html">Midterm Checkpoint</a>
+    <a href="./index.html">Final Report</a>
+  </div>
+
+  <main id="content" class="main-content" role="main">
+    <header class="page-header" role="banner">
+      <h1 class="project-name">Project Proposal</h1>
+      <h2 class="project-tagline">
+        This is our project proposal for our CS 4641 Group Project, which aims to predict movie
+        success based on past trends. This report is the first interpretation of our project,
+        and it will be used as a guide as we move forward. This website will be continously updated
+        as needed throughout the project, and will be finalized at the end of the semester
+        upon project completion.
+      </h2>
+      {% if site.github.is_project_page %}
+      <a href="{{ site.github.repository_url }}" class="btn">View on GitHub</a>
+      {% endif %}
+    </header>
+
+    <section class="video-embed-title">
+      <h1>Proposal Video</h1>
+    </section>
+
+    <section class="video-embed">
+      <iframe
+        width="560"
+        height="315"
+        src="https://www.youtube.com/embed/Pja-fl_uXTk?si=uw081psWg66BaU9J"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen>
+      </iframe>
+    </section>
+    
+
+    <section class="intro-and-bg">
+      <h1>Introduction and Background</h1>
+      <p>
+        The movie industry is difficult to navigate, and predicting a film’s success can mean
+        the difference between huge profits or significant losses. Traditionally, factors like "star power"
+        and marketing campaigns were used but often proved unreliable. With platforms like YouTube, new
+        data sources provide better insights into audience engagement. This project will use machine
+        learning to predict movie success by combining traditional metadata with transmedial data.
+      </p>
+    </section>
+
+    <section class="lit-review">
+      <h2>Literature Review</h2>
+      <p>
+        Methods for predicting movie success previously exist; Early studies used
+        sentiment analysis and data mining to forecast box office revenue based on factors like
+        cast, budget, and genre [1]. More recent research examines how media sites impact movie
+        popularity [2], and studies show YouTube trailer views can improve prediction accuracy [3].
+        However, combining traditional metadata with web data for newer films remains rather
+        underexplored.
+      </p>
+    </section>
+
+    <section class="dataset-desc">
+      <h2>Dataset Description and Link</h2>
+      <p>
+        This project uses the “The Movies Dataset” from Kaggle [4], which contains movie metadata
+        including genre, budget, revenue, and ratings. We will seek to
+        incorporate features like YouTube trailer view counts and
+        social media sentiment analysis, time permitting. We will concentrate on movies released up until
+        July 2017 due to the recency of the dataset.
+      </p>
+      <p>
+        Access the dataset
+        <a href="https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset">here</a>.
+      </p>
+    </section>
+
+    <section class="problem-def">
+      <h2>Problem Definition</h2>
+      <p>
+        Studios and distributors require accurate predictions to guide decisions on marketing,
+        distribution, and investment. Current methods often lack the precision needed in today’s
+        evolving media landscape. This project will address this issue using machine learning techniques.
+      </p>
+    </section>
+
+    <section class="motivation">
+      <h2>Motivation</h2>
+      <p>
+        Accurate movie predictions offer significant benefits. Studios can optimize budgets, distributors
+        can refine release schedules, and investors can assess project viability. Additionally,
+        understanding what drives success offers valuable insights into audience trends and preferences.
+      </p>
+    </section>
+
+    <section class="methods-header">
+      <h1>Methods</h1>
+    </section>
+
+    <section>
+      <h2>Data Preprocessing Methods</h2>
+      <ul>
+        <li>
+          <h3>Data Cleaning</h3>
+          <p>
+            Handling missing values in the dataset using imputation techniques.
+            (e.g., <a href="https://scikit-learn.org/stable/modules/impute.html">SciKit Imputation</a>).
+          </p>
+        </li>
+
+        <li>
+          <h3>Feature Engineering</h3>
+          <p>
+            Potentially creating new features like “like-view ratio” and extract trailer view counts from YouTube.
+          </p>
+        </li>
+        
+        <li>
+          <h3>Data Transformation</h3>
+          <p>
+            Scaling and normalizing numerical features using standardization
+            and min-max scaling.
+            (e.g., <a href="https://scikit-learn.org/stable/modules/preprocessing.html">SciKit Transformers</a>).
+          </p>
+        </li>
+
+        <li>
+          <h3>One-Hot Encoding</h3>
+          <p>
+            Transforming categorical variables into binary vectors for model processing.
+          </p>
+        </li>
+      </ul>
+    </section>
+
+
+    <section>
+      <h2>Machine Learning Algorithms</h2>
+      <ul>
+        <li>
+          <h3>Random Forest Regression</h3>
+          <p>
+            Random Forest can handle complex (non-linear and multiple-class)
+            relationships between features like budget, cast, and social media engagement.
+          </p>
+        </li>
+        <li>
+          <h3>Gradient Boosting Regression</h3>
+          <p>
+            Gradient Boosting can enhance the model's accuracy by focusing
+            on hard-to-predict movie success, making it especially effective for supposed
+            outliers in the dataset.
+          </p>
+        </li>
+        <li>
+          <h3>SVM (Support Vector Machine)</h3>
+          <p>
+            Can classify/separate film data as hits or flops based on features aforementioned.
+          </p>
+        </li>
+
+        <li>
+          <h3>kNN (K-Nearest Neighbors)</h3>
+          <p>
+            By comparing new films to similar past releases, kNN can provide intuitive
+            predictions with a distance function.
+          </p>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Learning Methods</h2>
+      <p>
+        This project primarily utilizes supervised learning techniques to train our
+        models with labeled data from the dataset. 
+      </p>
+    </section>
+
+    <section class="results-and-discussion">
+      <h1>Analyzing Results and Discussion</h1>
+    </section>
+
+    <section class="metrics">
+      <h2>Quantitative Metrics</h2>
+      <ul>
+        <li>
+          <h3>Coefficient of Determination (R^2)</h3>
+          <p>
+            A strong R² would demonstrate how well
+            factors like budget and cast explain a film’s financial success.
+          </p>
+        </li>
+        <li>
+          <h3>Brier Score</h3>
+          <p>
+            Beneficial for assessing the likelihood of a movie
+            exceeding specific revenue thresholds, which could help studios/investors make
+            more informed decisions.
+          </p>
+        </li>
+        <li>
+          <h3>Class Likelihood Ratio</h3>
+          <p>
+            By comparing the positive/negative likelihood ratios of binary classifiers, this metric would help
+            the model make more confident predictions of movies as hits or flops.
+          </p>
+        </li>
+        <li>
+          <h3>Log Loss</h3>
+          <p>
+            By penalizing overconfident incorrect predictions, this metric helps ensure the model provides
+            reliable probability estimates when classifying movies as hits or flops.
+          </p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="project-goals">
+      <h2>Project Goals</h2>
+      <p>
+        Primary goal is to develop a model that predicts movie success accurately. Ethically we
+        will ensure data privacy, and sustainably we will aim to develop a model that can be updated with ease.
+      </p>
+    </section>
+
+    <section class="expected-results">
+      <h2>Expected Results</h2>
+      <p>
+        We expect to identify the most influential dataset features
+        and expect that incorporating features like YouTube trailer views will significantly improve
+        prediction accuracy. 
+      </p>
+    </section>
+
+    <section class="references-header">
+      <h1>References</h1>
+    </section>
+
+    <section class="references-list">
+      <ol>
+        <li>
+          <p>
+            Quader, N., et al. “A Machine Learning Approach to Predict Movie Box-Office Success.”
+            IEEE Xplore, 1 Dec. 2017,
+            <a href="ieeexplore.ieee.org/document/8281839">
+              ieeexplore.ieee.org/document/8281839
+            </a>.
+          </p>
+        </li>
+        <li>
+          him, Steve, and Mohammad Pourhomayoun. Predicting Movie Market Revenue Using Social Media Data.
+          1 Aug. 2017, pp. 478–484,
+          <a href="ieeexplore.ieee.org/abstract/document/8102973">
+            ieeexplore.ieee.org/abstract/document/8102973
+          </a>,
+          <a href="https://doi.org/10.1109/iri.2017.68">
+            https://doi.org/10.1109/iri.2017.68
+          </a>.
+          Accessed 21 Feb. 2025.
+        </li>
+        <li>
+          Ahmad, Ibrahim Said, et al. “Movie Revenue Prediction Based on Purchase Intention Mining Using
+          YouTube Trailer Reviews.” Information Processing & Management, vol. 57, no. 5, 1 Sept. 2020, p.
+          102278,
+          <a href="www.sciencedirect.com/science/article/abs/pii/S0306457319309501">
+            www.sciencedirect.com/science/article/abs/pii/S0306457319309501
+          </a>,
+          <a href="https://doi.org/10.1016/j.ipm.2020.102278">
+            https://doi.org/10.1016/j.ipm.2020.102278
+          </a>
+        </li>
+        <li>
+          Rounak Banik. The Movies Dataset. Kaggle.
+          <a href="https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset">
+            https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset
+          </a>
+        </li>
+      </ol>
+    </section>
+
+    <hr>
+
+    <section class="contributions-header">
+      <h1>Proposal Contributions</h1>
+    </section>
+
+    <section>
+      <table>
+        <tr>
+          <td>Dylan Bruce</td>
+          <td>Timotheus James</td>
+          <td>Vikrant Talwar</td>
+          <td>Alexander Thorne</td>
+          <td>Tyler Morgan</td>
+        </tr>
+        <tr>
+          <td>Established GitHub repository/website with Jekyll theme,
+            researched datasets, identified data preprocessing methods & ML algorithms,
+            created video slides, and translated proposal writeup to website.</td>
+          <td>Researched background, literature review, explicitly defined the problem
+            definition, ensured IEEE format. </td>
+          <td>Identified problem motivation, data preprocessing methods, ML algorithms,
+            and recorded/uploaded proposal video.</td>
+          <td>Edited Project Proposal, dataset research.</td>
+          <td>Identified strategies for preprocessing data, and explored model architectures.</td>
+        </tr>
+      </table>
+    </section>
+
+    <hr>
+
+    <section class="contributions-header">
+      <h1>Gantt Chart</h1>
+    </section>
+
+    <section>
+      <a href="https://docs.google.com/spreadsheets/d/1vUs6afYWUMlOmoXVNTkmUfqeVQ_IDode/edit?usp=sharing&ouid=106129173969591465156&rtpof=true&sd=true">
+        Click to access project Gantt Chart
+      </a>
+    </section>
+
+    <footer class="site-footer">
+      <span class="site-footer-credits">
+        <p>
+          This page was created with <a href="https://pages.github.com">GitHub Pages</a>.
+        </p>
+        <p>
+          Made by Dylan Bruce, Timotheus James, Vikrant Talwar, Alexander Thorne, and Tyler Morgan with (╯°□°）╯︵ ┻━┻.
+        </p>
+        <p>
+          Website created using the following template: <a href="https://github.com/pages-themes/cayman">Cayman</a>.
+        </p>
+      </span>
+
+      {% if site.github.is_project_page %}
+      <span class="site-footer-owner"><a href="{{ site.github.repository_url }}">{{ site.github.repository_name }}</a> is maintained by <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a>.</span>
+      {% endif %}
+    </footer>
+  </main>
+</body>
+</html>

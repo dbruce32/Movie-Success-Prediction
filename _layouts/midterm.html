@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: 'en-US' }}">
+<head>
+  <meta charset="UTF-8">
+  <title>Movie Success Prediction: Home</title>
+  <link rel="icon" type="image/png" href="./popcorn-png-9432.png">
+
+{% seo %}
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+  {% include head-custom.html %}
+
+  <style>
+    body {
+      display: flex;
+      margin: 0;
+    }
+
+    .main-content {
+      color: #000000
+    }
+
+    .page-header {
+    padding: 50px 0;
+    text-align: center;
+    color: white;
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.15);
+
+    border-radius: 25px;
+    
+    width: 100%;
+    position: relative;
+    left: 0;
+    right: 0;
+    margin: 0;
+    }
+
+    .page-header .project-name {
+    color: white;
+    }
+
+    .page-header .project-tagline {
+      color: white;
+      margin-left: 30px;
+      margin-right: 30px;
+      margin-top: 10px;
+    }
+
+    .intro-and-bg {
+      margin-top: 20px;
+    }
+
+    .video-embed-title {
+      margin-top: 20px;
+    }
+
+    .video-embed-title h1 {
+      font-weight: bold;
+    }
+
+    .video-embed {
+      margin-top: 20px;
+      position: sticky;
+    }
+
+    .h1 {
+      font-weight: 500;
+    }
+
+    .sidebar {
+      width: 250px;
+      height: 100vh;
+      background-color: #157878;
+      padding: 20px;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      top: 0;
+      left: 0;
+      color: white;
+    }
+
+    .sidebar h2 {
+      text-align: center;
+      color: white;
+    }
+
+    .sidebar a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      margin: 15px 0;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .sidebar a:hover {
+      background-color: #1e8c9e;
+    }
+
+    .main-content {
+      margin-left: 270px;
+      padding: 20px;
+      width: 100%;
+    }
+
+    .intro-and-bg h1 {
+      font-weight: bold;
+    }
+
+    .results-and-discussion h1 {
+      font-weight: bold;
+    }
+
+    .methods-header h1 {
+      font-weight: bold;
+    }
+
+    .references-header h1 {
+      font-weight: bold;
+    }
+
+    .contributions-header h1 {
+      font-weight: bold;
+    }
+
+  </style>
+</head>
+
+<body>
+  <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+  <!-- Sidebar Navigation -->
+  <div class="sidebar">
+    <h2>Navigation</h2>
+    <a href="./index.html">Home</a>
+    <a href="./proposalmd.html">Proposal</a>
+    <a href="./midtermmd.html">Midterm Checkpoint</a>
+    <a href="./finalmd.html">Final Report</a>
+  </div>
+
+  <main id="content" class="main-content" role="main">
+    <header class="page-header" role="banner">
+      <h1 class="project-name">Midterm Checkpoint</h1>
+      <h2 class="project-tagline">
+        This is our midterm checkpoint for our CS 4641 Group Project, which aims to predict movie
+        success based on past trends. This report is the first interpretation of our project,
+        and it will be used as a guide as we move forward. This website will be continously updated
+        as needed throughout the project, and will be finalized at the end of the semester
+        upon project completion.
+      </h2>
+      {% if site.github.is_project_page %}
+      <a href="{{ site.github.repository_url }}" class="btn">View on GitHub</a>
+      {% endif %}
+    </header>
+
+    <section class="intro-and-bg">
+      <h1>Introduction and Background</h1>
+      <p>
+        The movie industry is challenging to navigate, and predicting the success of one’s film can
+        be the difference between making it big or losing millions of dollars. Traditionally, measurements
+        like “star power” and marketing campaigns were used, but they often weren’t reliable. With the
+        rise of digital platforms like YouTube, new data sources have emerged, offering deeper insights
+        into audience engagement and success metrics for movies. This project will explore machine learning
+        and its applications to predict movie success using traditional metadata and transmedial data.
+      </p>
+    </section>
+
+    <section class="lit-review">
+      <h2>Literature Review</h2>
+      <p>
+        Research has been done to explore different aspects of predicting the success of a movie. Some
+        researchers used sentiment analysis and data mining techniques to predict box office revenue
+        based on the cast, budget, and genre [1]. Other studies have investigated the impact of social
+        media on movie popularity [2]. Recent work shows how transmedial data such as YouTube trailer
+        views can enhance the accuracy of predictions [3]. There is still a gap in research that
+        comprehensively combines both traditional metadata with transmedial data for recent films.
+      </p>
+    </section>
+
+    <section class="dataset-desc">
+      <h2>Dataset Description and Link</h2>
+      <p>
+        This project uses the “The Movies Dataset” from Kaggle [4], which contains movie metadata
+        including genre, budget, revenue, and release date. We will seek to
+        incorporate features like YouTube trailer view counts and
+        social media sentiment analysis, time permitting. We will concentrate on movies released up until
+        July 2017 due to the recency of the dataset.
+      </p>
+      <p>
+        Access the dataset
+        <a href="https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset">here</a>.
+      </p>
+    </section>
+
+    <section class="problem-def">
+      <h2>Problem Definition</h2>
+      <p>
+        Studios and distributors require accurate predictions to guide decisions on marketing,
+        distribution, and investment. Current methods often lack the precision needed in today’s
+        evolving media landscape. This project will address this issue using machine learning techniques.
+      </p>
+    </section>
+
+    <section class="motivation">
+      <h2>Motivation</h2>
+      <p>
+        Accurate movie predictions offer significant benefits. Studios can optimize budgets, distributors
+        can refine release schedules, and investors can assess project viability. Additionally,
+        understanding what drives success offers valuable insights into audience trends and preferences.
+      </p>
+    </section>
+
+    <section class="methods-header">
+      <h1>Methods</h1>
+    </section>
+
+    <section>
+      <h2>Data Preprocessing Methods</h2>
+      <ul>
+        <li>
+          <h3>Data Cleaning</h3>
+          <p>
+            Data cleaning was the core of our preprocessing operations because it involved identifying and
+            removing any missing duplicate or irrelevant data. This was crucial because the Kaggle dataset
+            that we used initially had 8 features, many of which would not help in predicting the target: revenue.
+            Features like posters, initially included in the Kaggle dataset, were of no use to us because just
+            including posters would be too vague. If “poster types” (minimalist, floating heads etc.) was a feature,
+            that could have been useful as trends could have been identified but simply including images of posters
+            would do nothing. So, our first step was to set a completed list of features. We decided on using “budget”, 
+            “revenue”, “vote_average”, “popularity”, “genre”, and “production_companies”. By doing so, we were able
+            to use the original dataset while ignoring the irrelevant features. We then also ensured that all
+            numerical features were of type float. This was done using the .astype(float) function. This ensured
+            that any important information was not lost and that comparisons and arithmetic between features could
+            be conducted smoothly. Lastly, all placeholder values were removed from the input data. The former was
+            done through the following code:        
+          </p>
+          <b>
+            <code style="background-color: #f0f0f0; padding: 5px; border-radius: 5px; color: #000000;">
+              df = df[(df['budget'] > 0) & (df['revenue'] > 0)]
+            </code>
+          </b>
+          <p>
+            This ensured that only data points with a recorded budget and revenue were considered as inputs.
+          </p>
+        </li>
+        
+        <li>
+          <h3>Feature Engineering</h3>
+          <p>
+            Feature engineering helped enhance our model’s performance by transforming existing features. The
+            primary way this was done was by transforming raw data into something that is suitable to the model.
+            One way this was done was by transforming all the data points that had a value of 0 associated with the
+            “popularity” feature. These data points had their popularity replaced with the mean popularity of all
+            data points. This was implemented using the following code:
+          </p>
+          <b>
+            <code style="background-color: #f0f0f0; padding: 5px; border-radius: 5px; color: #000000;">
+              df['popularity']=df.mask(df['popularity']==0, df[df['popularity'] > 0]['popularity'].mean())['popularity']
+            </code>
+          </b>
+          <p>
+            This was done because 0 was not a representative value of the data as a whole and too many 0’s would skew
+            the data. Such data points were not removed because all their other features contained valid values which
+            indicated that these points could be used as inputs but without being classified as outliers.
+          </p>
+            (In code, <a href="https://scikit-learn.org/stable/modules/preprocessing.html">SciKit Transformers</a> were
+            used after One-Hot Encoding).
+          </p>
+        </li>
+
+        <li>
+          <h3>One-Hot Encoding</h3>
+          <p>
+            We used both one-hot and ordinal encoding throughout the course of our model. This was because for some
+            features an ordering had to be implicitly defined (ordinal encoding) and for others they just had to be
+            represented as unique discrete values (one-hot encoding). For example, one of our features was “genre”
+            and so categories like horror, comedy, action etc. do not have an implicit order defined between them.
+            Thus, we used one-hot encoding for genres. This was done through the following commands:
+          </p>
+            <b>
+<pre style="background-color: #f0f0f0; padding: 15px; border-radius: 5px; color: #000000; white-space: pre-wrap; word-wrap: break-word;">
+genre_names = [[genre["name"] for genre in json.loads(str(genre_list).replace("'", "\"")) if "name" in genre_list] for genre_list in genres_data]
+mlb_genre = MultiLabelBinarizer()
+one_hot_encoded_genres = mlb_genre.fit_transform(genre_names)
+# replace genres in dataset with one-hot encoded
+df= df.drop('genres',axis=1).join(pd.DataFrame(one_hot_encoded_genres)).fillna(0)
+</pre>
+            </b>
+            </p>
+              The first line of code traverses the “genre” column to individually capture each genre that is defined
+              within the dataset. Then, we create an instance of a MultiLabelBinarizer object which mimics the
+              principle of One-Hot Encoding while allowing a movie to be classified under multiple genres. The last
+              two lines convert each data point’s genres into an array which contains binary values. Data points which
+              are not classified under any genre have their genre represented by a 0, following the principle of data
+              cleaning user previously. 
+            </p>
+        </li>
+      </ul>
+    </section>
+
+
+    <section>
+      <h2>Machine Learning Algorithms</h2>
+      <ul>
+        <li>
+          <h3>Linear Regression</h3>
+          <p>
+            The linear regression model implemented for this project was designed to predict movie revenue
+            based on several key features, including budget, popularity, TMDb vote count, release year, and
+            genre categories. The model utilized log-transformed versions of budget and popularity
+            (log_budget and log_popularity) to address right-skewness present in the data and to improve
+            linearity in the relationships. It analyzed continuous variables like budget and popularity as
+            well as categorical genre variables, which was represented through One-Hot encoding. Visualizing
+            this model's choice in regression coefficients revealed patterns in how these factors influence
+            revenue predictions, as demonstrated in the following generated model:
+          </p>
+          <p>If the following embed does not show an image, please <a href="https://drive.google.com/file/d/1INS2LXE2eQ1Jupp7nd-h4DaQMvSuuIcL/view?usp=sharing" target="_blank">click here.</a></p>
+
+          <img src="https://i.ibb.co/LhzYv9JR/budget-vs-revenue-prediction.jpg" width="650" height="350">
+
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Learning Methods</h2>
+      <p>
+        This project primarily plans to utilize supervised learning techniques to train our models with
+        labeled data from the dataset. In this case, we have thus far implemented linear regression.
+      </p>
+    </section>
+
+    <section class="results-and-discussion">
+      <h1>Results and Discussion</h1>
+    </section>
+
+    <section class="metrics">
+      <h2>4.1: Visualizations</h2>
+
+      <p>If the following embed does not show an image, please <a href="https://drive.google.com/file/d/1xPZEIOLFE-I56zbdab4JxbeNhXcXIX4D/view?usp=sharing" target="_blank">click here.</a></p>
+      
+      <img src="https://i.ibb.co/nqhkzT3Q/actual-vs-predicted-revenue.jpg" width="500" height="400" frameborder="0">
+
+      <p>
+        
+        To better understand our model’s behavior, we visualized the actual versus predicted revenue with a scatter plot, which proved to be very informative. In an ideal model, the prediction would always equal the true value, so points would align tightly along the red diagonal line. With an R2 value of ~0.6, our scatter plot demonstrates a broadly linear correlation, indicating that, as the predicted success of a movie increased, so too did the actual revenue. We noticed deviations at the high end of this scale, as blockbuster movies with large actual revenues consistently outperformed our predictions, indicating an underestimation for those films. This suggests that our linear model did not fully capture the unique factors that gave top films their incredible success. Our predictions for films in the middle revenue range proved to be reasonably accurate, and we examined the distribution of residuals to confirm our findings. The residuals were roughly centered around zero but showed a slight right skew, since our model tended to severely underestimate revenue for high-grossing movies, leading to large positive errors where actual revenue exceeded predictions. Aside from the outliers, there was no strong bias across most of the range; residuals for mid-level movie performances were relatively symmetric in their distribution. Our visualization of the data aligns with our quantitative metrics. The linear model performs well for the bulk of movies, but it currently consistently underestimates top performers, and it overestimates a few of the lower performers. In our case, improvements are needed with capturing extreme cases of movie success, potentially with the addition of new features like YouTube trailer views.
+      </p>
+      <h2>4.2: Quantitative Metrics</h2>
+      <p>
+        The linear regression model yielded moderately accurate results in predicting movie success. For instance, on the held-out test set, the model achieved an R² value of ~0.60, meaning it explains about 60% of the variance in movie revenue/ROI​. This indicates that the model is capturing a significant portion of the trend, though roughly 40% of variability remains unexplained. The Mean Squared Error (MSE) was approximately 1016 in squared dollar units for all revenue predictions, while the Mean Absolute Error (MAE) indicated that the average prediction deviated by tens of millions of dollars. An R² in the ~0.5–0.6 range is generally considered a moderate goodness-of-fit. The model is certainly better than a naive guess, but may not be precise enough for high-stakes decisions​. The Explained Variance Score was approximately 0.60, closely reflecting the R² value, as there was no significant bias offset in the predictions. These metrics suggest that our linear model has some predictive power, but there is adequate room for improvement. In essence, our model reasonably estimates a movie’s success, but individual predictions can deviate significantly from actual outcomes.
+      </p>
+      <p>
+        The log-scale statistics obtained are as follows:
+        <ul>
+          <li> R² Score: 0.586 </li>
+          <li> RMSE: 1.669 </li>
+          <li> Mean Absolute Error: 1.136 </li>
+          <li> Mean Average Precision Error: 0.099 </li>
+        </ul>
+      </p>
+      <!--<ul>
+        <li>
+          <h3>Coefficient of Determination (R^2)</h3>
+          <p>
+            A strong R² would demonstrate how well
+            factors like budget and cast explain a film’s financial success.
+            Add more to this now that we have it
+          </p>
+        </li>
+        <li>
+          <h3>RMSE</h3>
+          <p>
+            Fill in later: In log scale, so interpret it as such
+          </p>
+        </li>
+      </ul>-->
+      <h2>
+        4.3: Model Analysis (Linear Regression)
+      </h2>
+      <p>
+        Our linear regression model’s moderate performance is explained by the inherent simplification caused by the nature of linear regression. Since it can only model straight-line relationships, non-linear patterns in the data resulted in an underfit. This was confirmed by our R² value of approximately 0.6, indicating high bias but no overfitting. This is logical, as real-world factors that influence the success of a movie are not purely linear. Social media buzz and virality can both have a huge impact, which violates the linear assumption we initially made. Likewise, interactions between features, such as a high marketing spend combined with a holiday release date, might yield an outsized impact, and this is not accounted for in a simple linear model. Our feature set was also quite limited, as important predictors like cast fame, director track record, or social media hype were absent; the model only drew insight from a slice of the whole picture. As a result, the linear regression worked reasonably well in areas where the relationship between inputs and output was roughly linear and covered by the given features, but it struggled with edge cases. In particular, movies that turned out to be runaway hits or massive flops were not predicted accurately. The model tended to under-predict the revenue of top blockbuster films and over-predict very low-performing films because those outcomes were driven by factors beyond the scope of our linear features. This aligns with the nature of our data – movie revenues have very high variance, where the majority of films earn modest amounts but a few earn hundreds of times more​. A single linear trend line does not seem to be able to properly account for outliers, resulting in significant errors for those cases. The general direction of factors affecting revenue was captured, but nuances and complex combinations were not adequately captured, which led to an underfitting in terms of the model’s performance.
+      </p>
+
+      <p>If the following embed does not show an image, please <a href="https://drive.google.com/file/d/1Ba2dDZEsmYgLBfH_kscmvNvETQTuGHyL/view?usp=sharing" target="_blank">click here.</a></p>
+
+      <img src="https://i.ibb.co/20hgSFYm/regression-coefficients.jpg" width="650" height="400">
+
+      <p>
+        The above model captures the features of the linear regression ranked by their contribution
+        to the prediction of revenue. All coefficients are shown as absolute values. The bar graph suggests
+        that financial investment (budget) and audience appeal (popularity) are the primary drivers of movie revenue,
+        followed by genre and release year as secondary factors.
+      </p>
+
+      <h2>
+        4.4: Next Steps
+      </h2>
+      <p>
+        Our results, while moderately successful, demonstrated the potential for several avenues of improvement in the future. For instance, we can experiment with more advanced and non-linear modeling techniques. Prior research indicates that decision tree ensembles may significantly outperform linear models, leading us to predict a boost in accuracy with the adoption of such methods in terms of handling the high variance in revenues and the fitting of outliers more accurately. We could also potentially explore neural networks for completeness. We also plan to enrich our original feature set, with the incorporation of features like YouTube trailer views, likes, and potentially critic ratings. These features may even improve upon our original linear model, leading to a greater R2 value. We may also incorporate temporal features, such as the movie’s release date and the time between the first announcement and the actual premiere. Lastly, we will apply rigorous data preprocessing and feature engineering methods to ensure variables are on comparable scales. In our implementation of these next steps, we aim to further increase the predictive accuracy of our model to the level of highly practical predictions.
+      </p>
+    </section>
+
+    <section class="references-header">
+      <h1>References</h1>
+    </section>
+
+    <section class="references-list">
+      <ol>
+        <li>
+          <p>
+            Quader, N., et al. “A Machine Learning Approach to Predict Movie Box-Office Success.”
+            IEEE Xplore, 1 Dec. 2017,
+            <a href="ieeexplore.ieee.org/document/8281839">
+              ieeexplore.ieee.org/document/8281839
+            </a>.
+          </p>
+        </li>
+        <li>
+          him, Steve, and Mohammad Pourhomayoun. Predicting Movie Market Revenue Using Social Media Data.
+          1 Aug. 2017, pp. 478–484,
+          <a href="ieeexplore.ieee.org/abstract/document/8102973">
+            ieeexplore.ieee.org/abstract/document/8102973
+          </a>,
+          <a href="https://doi.org/10.1109/iri.2017.68">
+            https://doi.org/10.1109/iri.2017.68
+          </a>.
+          Accessed 21 Feb. 2025.
+        </li>
+        <li>
+          Ahmad, Ibrahim Said, et al. “Movie Revenue Prediction Based on Purchase Intention Mining Using
+          YouTube Trailer Reviews.” Information Processing & Management, vol. 57, no. 5, 1 Sept. 2020, p.
+          102278,
+          <a href="www.sciencedirect.com/science/article/abs/pii/S0306457319309501">
+            www.sciencedirect.com/science/article/abs/pii/S0306457319309501
+          </a>,
+          <a href="https://doi.org/10.1016/j.ipm.2020.102278">
+            https://doi.org/10.1016/j.ipm.2020.102278
+          </a>
+        </li>
+        <li>
+          Rounak Banik. The Movies Dataset. Kaggle.
+          <a href="https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset">
+            https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset
+          </a>
+        </li>
+      </ol>
+    </section>
+
+    <hr>
+
+    <section class="contributions-header">
+      <h1>Proposal Contributions</h1>
+    </section>
+
+    <section>
+      <table>
+        <tr>
+          <td>Dylan Bruce</td>
+          <td>Timotheus James</td>
+          <td>Vikrant Talwar</td>
+          <td>Alexander Thorne</td>
+          <td>Tyler Morgan</td>
+        </tr>
+        <tr>
+          <td> <!-- DB -->
+            Created website midterm report page,
+            uploaded dataset,
+            created/coded Linear Regression Model,
+            calculated model statistics,
+            created visualizations w/ matplotlib,
+            explained linear regression &
+            visualizations in midterm report
+          </td>
+          <td> <!-- TJ -->
+            Linear Regression model analysis,
+            next steps,
+            reference collection,
+            results/discussion
+          </td>
+          <td> <!-- VT -->
+            Described and analyzed 3 data preprocessing methods
+            along with a supervised learning method
+          </td>
+          <td> <!-- AT -->
+            Proofreading, dataset research,
+            initial visualizations,
+            quantitative metrics</td>
+          <td> <!-- TM -->
+            Added model statistic,
+            created Movie_ML_Notebook with ML algorithm
+          </td>
+        </tr>
+      </table>
+    </section>
+
+    <hr>
+
+    <section class="contributions-header">
+      <h1>Gantt Chart</h1>
+    </section>
+
+    <section>
+      <a href="https://docs.google.com/spreadsheets/d/1vUs6afYWUMlOmoXVNTkmUfqeVQ_IDode/edit?usp=sharing&ouid=106129173969591465156&rtpof=true&sd=true">
+        Click to access project Gantt Chart
+      </a>
+    </section>
+
+    <footer class="site-footer">
+      <span class="site-footer-credits">
+        <p>
+          This page was created with <a href="https://pages.github.com">GitHub Pages</a>.
+        </p>
+        <p>
+          Made by Dylan Bruce, Timotheus James, Vikrant Talwar, Alexander Thorne, and Tyler Morgan with (╯°□°）╯︵ ┻━┻.
+        </p>
+        <p>
+          Website created using the following template: <a href="https://github.com/pages-themes/cayman">Cayman</a>.
+        </p>
+      </span>
+
+      {% if site.github.is_project_page %}
+      <span class="site-footer-owner"><a href="{{ site.github.repository_url }}">{{ site.github.repository_name }}</a> is maintained by <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a>.</span>
+      {% endif %}
+    </footer>
+  </main>
+</body>
+</html>

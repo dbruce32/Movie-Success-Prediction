@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: 'en-US' }}">
+<head>
+  <meta charset="UTF-8">
+  <title>Movie Success Prediction: Home</title>
+  <link rel="icon" type="image/png" href="./popcorn-png-9432.png">
+
+{% seo %}
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+  {% include head-custom.html %}
+
+  <style>
+    body {
+      display: flex;
+      margin: 0;
+    }
+
+    .main-content {
+      color: #000000
+    }
+
+    .page-header {
+    padding: 50px 0;
+    text-align: center;
+    color: white;
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.15);
+
+    border-radius: 25px;
+    
+    width: 100%;
+    position: relative;
+    left: 0;
+    right: 0;
+    margin: 0;
+    }
+
+    .page-header .project-name {
+    color: white;
+    }
+
+    .page-header .project-tagline {
+      color: white;
+      margin-left: 30px;
+      margin-right: 30px;
+      margin-top: 10px;
+    }
+
+    .intro-and-bg {
+      margin-top: 20px;
+    }
+
+    .video-embed-title {
+      margin-top: 20px;
+    }
+
+    .video-embed-title h1 {
+      font-weight: bold;
+    }
+
+    .video-embed {
+      margin-top: 20px;
+      position: sticky;
+    }
+
+    .h1 {
+      font-weight: 500;
+    }
+
+    .sidebar {
+      width: 250px;
+      height: 100vh;
+      background-color: #157878;
+      padding: 20px;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      top: 0;
+      left: 0;
+      color: white;
+    }
+
+    .sidebar h2 {
+      text-align: center;
+      color: white;
+    }
+
+    .sidebar a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      margin: 15px 0;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .sidebar a:hover {
+      background-color: #1e8c9e;
+    }
+
+    .main-content {
+      margin-left: 270px;
+      padding: 20px;
+      width: 100%;
+    }
+
+    .intro-and-bg h1 {
+      font-weight: bold;
+    }
+
+    .results-and-discussion h1 {
+      font-weight: bold;
+    }
+
+    .methods-header h1 {
+      font-weight: bold;
+    }
+
+    .references-header h1 {
+      font-weight: bold;
+    }
+
+    .contributions-header h1 {
+      font-weight: bold;
+    }
+
+  </style>
+</head>
+
+<body>
+  <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+  <!-- Sidebar Navigation -->
+  <div class="sidebar">
+    <h2>Navigation</h2>
+    <a href="./index.html">Home</a>
+    <a href="./proposalmd.html">Proposal</a>
+    <a href="./midtermmd.html">Midterm Checkpoint</a>
+    <a href="./finalmd.html">Final Report</a>
+  </div>
+
+  <main id="content" class="main-content" role="main">
+    <header class="page-header" role="banner">
+      <h1 class="project-name">Final Report</h1>
+      <h2 class="project-tagline">
+        This is Group 53's final report for our CS 4641 Project, which predicts movie
+        revenue based on past trends. You will find our literature and evaluations of our models,
+        including what we created and the results we achieved.
+      </h2>
+      {% if site.github.is_project_page %}
+      <a href="{{ site.github.repository_url }}" class="btn">View on GitHub</a>
+      {% endif %}
+    </header>
+
+    <section class="intro-and-bg">
+      <h1>Introduction and Background</h1>
+      <p>
+        The movie industry is challenging to navigate, and predicting the success of one’s film can
+        be the difference between making it big or losing millions of dollars. Traditionally, measurements
+        like “star power” and marketing campaigns were used, but they often weren’t reliable. With the
+        rise of digital platforms like YouTube, new data sources have emerged, offering deeper insights
+        into audience engagement and movie success metrics. This project will explore machine learning
+        and its applications to predict movie success using traditional metadata and data found online.
+      </p>
+    </section>
+
+    <section class="lit-review">
+      <h2>Literature Review</h2>
+      <p>
+        Research has been done to explore different aspects of predicting the success of a movie. Some
+        researchers used sentiment analysis and data mining techniques to predict box office revenue
+        based on the cast, budget, and genre [1]. Other studies have investigated the impact of social
+        media on movie popularity [2]. Recent work shows how transmedial data such as YouTube trailer
+        views can enhance the accuracy of predictions [3]. There is still a gap in research that
+        comprehensively combines traditional metadata and transmedial data for recent films.
+      </p>
+    </section>
+
+    <section class="dataset-desc">
+      <h2>Dataset Description and Link</h2>
+      <p>
+        This project uses the “The Movies Dataset” from Kaggle [4], which contains movie metadata
+        including genre, budget, revenue, and release date. We will seek to
+        incorporate features like YouTube trailer view counts and
+        social media sentiment analysis, time permitting. We will concentrate on movies released up until
+        July 2017 due to the recency of the dataset.
+      </p>
+      <p>
+        Access the dataset
+        <a href="https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset">here</a>.
+      </p>
+    </section>
+
+    <section class="problem-def">
+      <h2>Problem Definition</h2>
+      <p>
+        Studios and distributors require accurate predictions to guide decisions on marketing,
+        distribution, and investment. Current methods often lack the precision needed in today’s
+        evolving media landscape. This project will address this issue using machine learning techniques.
+      </p>
+    </section>
+
+    <section class="motivation">
+      <h2>Motivation</h2>
+      <p>
+        Accurate movie predictions offer significant benefits. Studios can optimize budgets, distributors
+        can refine release schedules, and investors can assess project viability. Additionally,
+        understanding what drives success offers valuable insights into audience trends and preferences.
+      </p>
+    </section>
+
+    <section class="methods-header">
+      <h1>Methods</h1>
+    </section>
+
+    <section>
+      <h2>Data Preprocessing Methods</h2>
+      <ul>
+        <li>
+          <h3>Data Cleaning</h3>
+          <p>
+            Data cleaning was the core of our preprocessing operations, as we identified and
+            removed any missing, duplicate, or irrelevant data. This was crucial because the Kaggle dataset
+            that we used initially had over a dozen features, many of which would not help in predicting revenue.
+            For example, the poster image links included in the original dataset were completely useless for our purposes.
+            If “poster type” (minimalist, floating heads, etc.) was a feature, certain trends could potentially be identified,
+            but simply including images of posters would do nothing. So, our first step was to set a completed list of features.
+            We decided on using “budget”, “revenue”, “vote_average”, “popularity”, “genre”, and “production_companies”.
+            We also converted all numerical features to floats with the .astype(float) function.
+            This ensured that any important information was not lost and that comparisons and operations between features could
+            be conducted smoothly. Lastly, all placeholder values were removed from the input data with the following code:        
+          </p>
+          <b>
+            <code style="background-color: #f0f0f0; padding: 5px; border-radius: 5px; color: #000000;">
+              df = df[(df['budget'] > 0) & (df['revenue'] > 0)]
+            </code>
+          </b>
+          <p>
+            This ensured that only data points with a recorded budget and revenue were considered as inputs.
+          </p>
+        </li>
+        
+        <li>
+          <h3>Feature Engineering</h3>
+          <p>
+            Feature engineering helped enhance our model’s performance, primarily by transforming raw data into something more suitable.
+            For example, all data points that had a value of 0 for “popularity” were replaced with the mean popularity of all
+            data points. This was implemented using the following code:
+          </p>
+          <b>
+            <code style="background-color: #f0f0f0; padding: 5px; border-radius: 5px; color: #000000;">
+              df['popularity']=df.mask(df['popularity']==0, df[df['popularity'] > 0]['popularity'].mean())['popularity']
+            </code>
+          </b>
+          <p>
+            This was done because 0 was not a representative value of the data as a whole and too many zeros would skew the results.
+            Such data points were not removed because all their other features contained valid values which
+            indicated that these points could be used as inputs but without being classified as outliers.
+          </p>
+            (In code, <a href="https://scikit-learn.org/stable/modules/preprocessing.html">SciKit Transformers</a> were
+            used after One-Hot Encoding).
+          </p>
+        </li>
+
+        <li>
+          <h3>One-Hot Encoding</h3>
+          <p>
+            We used both one-hot and ordinal encoding in our model. This was because, for some
+            features, an ordering had to be implicitly defined, and for others, they just had to be
+            represented as unique discrete values. For example, one of our features was “genre”,
+            so categories like horror, comedy, action, etc. do not have an implicit order defined between them.
+            Thus, we used one-hot encoding for genres. This was done through the following commands:
+          </p>
+            <b>
+<pre style="background-color: #f0f0f0; padding: 15px; border-radius: 5px; color: #000000; white-space: pre-wrap; word-wrap: break-word;">
+genre_names = [[genre["name"] for genre in json.loads(str(genre_list).replace("'", "\"")) if "name" in genre_list] for genre_list in genres_data]
+mlb_genre = MultiLabelBinarizer()
+one_hot_encoded_genres = mlb_genre.fit_transform(genre_names)
+# replace genres in dataset with one-hot encoded
+df= df.drop('genres',axis=1).join(pd.DataFrame(one_hot_encoded_genres)).fillna(0)
+</pre>
+            </b>
+            </p>
+              The first line of code traverses the “genre” column to individually capture each genre that is defined
+              within the dataset. Then, we create an instance of a MultiLabelBinarizer object that mimics the
+              principle of One-Hot Encoding while allowing a movie to be classified under multiple genres. The last
+              two lines convert each data point’s genres into an array that contains binary values. Data points that
+              do not have any associated genres are assigned a 0, in line with standard data cleaning practices.
+            </p>
+        </li>
+      </ul>
+    </section>
+
+
+    <section>
+      <h2>Machine Learning Algorithms</h2>
+      <ul>
+        <li>
+          <h3>Linear Regression</h3>
+          <p>
+            The linear regression model implemented for this project was designed to predict movie revenue
+            based on several key features, including budget, popularity, TMDb vote count, release year, and
+            genre categories. The model utilized log-transformed versions of budget (log_budget) and popularity
+            (log_popularity) to address the right-skewness present in the data and to improve
+            linearity in the relationships. It analyzed continuous variables like budget and popularity as
+            well as categorical genre variables, which were represented through One-Hot encoding. Visualizing
+            this model's choice in regression coefficients revealed patterns in how these factors influence
+            revenue predictions, as demonstrated in the following generated model:
+          </p>
+          <p>If the following embed does not show an image, please <a href="https://drive.google.com/file/d/1INS2LXE2eQ1Jupp7nd-h4DaQMvSuuIcL/view?usp=sharing" target="_blank">click here.</a></p>
+
+          <img src="https://i.ibb.co/LhzYv9JR/budget-vs-revenue-prediction.jpg" width="650" height="350">
+
+        </li>
+        <li>
+            <h3> Random Forest </h3>
+            <p>
+              The random forest model implemented for this project was designed to capture the complex, non-linear relationships between movie revenue and predictive features. Unlike linear regression, this method leverages multiple decision trees to model feature interactions. This effectively handles continuous variables like budget and categorical variables like genre one-hot encodings without requiring manual transformation. Through aggregations across multiple decision trees, the model reduces variance while maintaining interpretability through feature importance scores. These scores reveal which factors, such as budget or specific genres, have the strongest influence on revenue predictions. The model's randomness inherently helps to reduce overfitting for this dataset.
+            </p>
+        </li>
+        <li>
+            <h3> Neural Network </h3>
+            <p>
+              The neural network model is a more sophisticated attempt at revenue prediction, using multiple layers with ReLU activation functions to learn data patterns. The architecture we designed processes normalized continuous features like budget and runtime alongside embedded categorical variables like language and genres. Dropout layers and L2 norm regularization were incorporated to stabilize generalization. The neural network is better than the random forest at capturing the more subtle, high-order interactions between features, including how budget and genre feature combinations can non-linearly impact revenue. Though its accuracy is less interpretable than tree-based methods, its performance was evaluated through loss curves and mean absolute error metrics in log-space, demonstrating an impressive predictive power for film revenues. However, extreme outliers remain an issue.
+            </p>
+        </li>
+        
+      </ul>
+    </section>
+
+    <section>
+        <h2>Learning Methods</h2>
+        <p>
+          Since our midterm report, we have expanded our approach by implementing three distinct supervised learning methods: linear regression, random forest, and a neural network. Each model we have implemented offers unique advantages and disadvantages in predicting movie revenue based on features like budget, runtime, genre, and language.
+        </p>
+        <p>
+          Our linear regression served as a baseline, revealing key linear relationships but struggling with the inherent non-linearity and high variance in movie revenues seen with most of the features. To address this, we developed a random forest model, which better captured these feature interactions through an ensemble of decision trees, improving prediction accuracy for mid-range films while remaining interpretable. Finally, our neural network leveraged deep learning to model complex, hierarchical patterns in the data, using dense layers to better balance performance and generalization.
+        </p>
+        <p>
+          To provide a comprehensive view, the models do the following: linear regression for interpretable linear trends, random forest for stable non-linear modeling, and the neural network for capturing intricate feature inter-dependencies. The accuracy of these models is quite good, but there is still a lot of room to improve.
+        </p>
+      </section>
+
+    <section class="results-and-discussion">
+      <h1>Results and Discussion</h1>
+    </section>
+
+    <section class="metrics">
+        <h2>4.1: Visualizations</h2>
+        <ul>
+            <li>
+                <h3>Linear Regression</h3>
+                <p>If the following embed does not show an image, please <a href="https://drive.google.com/file/d/1xPZEIOLFE-I56zbdab4JxbeNhXcXIX4D/view?usp=sharing" target="_blank">click here.</a></p>
+                <img src="https://i.ibb.co/nqhkzT3Q/actual-vs-predicted-revenue.jpg" width="500" height="400" frameborder="0">
+                <p>
+                    To better understand our model’s behavior, we visualized the actual versus predicted revenue with a scatter plot, which proved to be very informative. In an ideal model, the prediction would always equal the true value, so points would align tightly along the red diagonal line. With an R2 value of ~0.6, our scatter plot demonstrates a broadly linear correlation, indicating that, as the predicted success of a movie increased, so too did the actual revenue. We noticed deviations at the high end of this scale, as blockbuster movies with large actual revenues consistently outperformed our predictions, indicating an underestimation for those films. This suggests that our linear model did not fully capture the unique factors that gave top films their incredible success. Our predictions for films in the middle revenue range proved to be reasonably accurate, and we examined the distribution of residuals to confirm our findings. The residuals were roughly centered around zero but showed a slight right skew, since our model tended to severely underestimate revenue for high-grossing movies, leading to large positive errors where actual revenue exceeded predictions. Aside from the outliers, there was no strong bias across most of the range; residuals for mid-level movie performances were relatively symmetric in their distribution. Our visualization of the data aligns with our quantitative metrics. The linear model performs well for the bulk of movies, but it currently consistently underestimates top performers and overestimates a few of the lower performers. In our case, improvements are needed in capturing extreme cases of movie success, potentially with the addition of new features like YouTube trailer views.
+                </p>
+            </li>
+            <li>
+                <h3>Random Forest</h3>
+                <p>If the following embed does not show an image, please <a href="https://drive.google.com/file/d/1tc7FPY9GTiNRhL3m_ZSW59PmjM_YKf8V/view?usp=sharing" target="_blank">click here.</a></p>
+                <img src="https://i.ibb.co/LXsnk5Gm/actual-vs-predicted-revenue-rf.jpg" width="500" height="400" frameborder="0">
+                <p>
+                    To better fit the nonlinear aspect of the problem at hand, characterized by the crescent shape in our linear regression model's prediction graph above, we decided on an alternative approach with a random forest model. Upon first glance, it is clear that the random forest model performs better than linear regression at the upper end of the curve. However, it is important to note that the model consistently overestimates revenues that are less than a million, similar to what we saw with linear regression. One potential cause of this overestimation is that the dataset could have more accurate information (such as popularity) for more successful movies. It could also be a result of our approach to replacing missing values in the dataset.
+                </p>
+            </li>
+            <li>
+                <h3>Neural Network</h3>
+                <p>
+                    If the following embed does not show an image, please <a href="https://drive.google.com/file/d/1aa5t4HsECkIh0m6g3msVVYdEOQRkHvYz/view?usp=sharing" target="_blank">click here.</a>
+                </p>
+                <img src="https://i.ibb.co/HTNxvSPL/actual-vs-prediction-distribution.jpg" width="650" height="400">
+                <p>
+                    The above visual shows the actual revenue distribution vs the predicted revenue distribution from the neural network model. The model can predict the revenue of movies in the middle range fairly well, but it tends to underestimate the revenue of movies whose true revenues are significantly farther from the mean value. This means on average, it should give better predictions for films that are more typical of "the average movie" in the dataset.
+                </p>
+            </li>
+        </ul>
+      <h2>4.2: Quantitative Metrics</h2>
+        <p>
+        The linear regression model yielded moderately accurate results in predicting movie success. For instance, on the held-out test set, the model achieved an R² value of ~0.60, meaning it explains about 60% of the variance in movie revenue/ROI​. This indicates that the model is capturing a significant portion of the trend, though roughly 40% of variability remains unexplained. The Mean Squared Error (MSE) was approximately 1016 in squared dollar units for all revenue predictions, while the Mean Absolute Error (MAE) indicated that the average prediction deviated by a hundred million dollars. An R² in the ~0.5–0.6 range is generally considered a moderate goodness-of-fit. The model is certainly better than a naive guess, but may not be precise enough for high-stakes decisions​. The Explained Variance Score was approximately 0.60, closely reflecting the R² value, as there was no significant bias offset in the predictions. These metrics suggest that our linear model has some predictive power, but there is adequate room for improvement. In essence, our model reasonably estimates a movie’s success, but individual predictions can deviate significantly from actual outcomes.
+        </p>
+        <p>
+            The random forest model presented a solid improvement in its metrics relative to the linear regression model. Namely, the R² increased by 10% from its linear regression value. The average error for a given movie prediction decreased from 100 million to 37 million with this approach. The random forest model thus performs better than the linear regression model, as anticipated. 
+        </p>
+        <p>
+            The neural network did not present as impressive of results as we had anticipated given the balanced, tight nature of the predicted/actual visualization above. With an R² of approximately .51, the neural network fails to account for a large amount of the variance in the revenue. With a mean average error of $51,471,000, the average movie’s revenue is predicted with a moderately large error.
+        </p>
+
+    <h2>
+        4.3: Model Analysis
+    </h2>
+        <ul>
+            <li>
+                <h3> Linear Regression Model </h3>
+                <p>
+                    Our linear regression model’s moderate performance is explained by the inherent simplification caused by the nature of linear regression. Since it can only model straight-line relationships, non-linear patterns in the data resulted in an underfit. This was confirmed by our R² value of approximately 0.6, indicating high bias but no overfitting. This is logical, as real-world factors that influence the success of a movie are not purely linear. Social media buzz and virality can both have a huge impact, which violates the linear assumption we initially made. Likewise, interactions between features, such as a high marketing spend combined with a holiday release date, might yield an outsized impact, and this is not accounted for in a simple linear model. Our feature set was also quite limited, as important predictors like cast fame, director track record, or social media hype were absent; the model only drew insight from a slice of the whole picture. As a result, the linear regression worked reasonably well in areas where the relationship between inputs and output was roughly linear and covered by the given features, but it struggled with edge cases. In particular, movies that turned out to be runaway hits or massive flops were not predicted accurately. The model tended to under-predict the revenue of top blockbuster films and over-predict very low-performing films because those outcomes were driven by factors beyond the scope of our linear features. This aligns with the nature of our data – movie revenues have very high variance, where the majority of films earn modest amounts but a few earn hundreds of times more​. A single linear trend line does not seem to be able to properly account for outliers, resulting in significant errors for those cases. The general direction of factors affecting revenue was captured, but nuances and complex combinations were not adequately captured, which led to an underfitting in terms of the model’s performance.
+                </p>
+
+                <p>If the following embed does not show an image, please <a href="https://drive.google.com/file/d/1Ba2dDZEsmYgLBfH_kscmvNvETQTuGHyL/view?usp=sharing" target="_blank">click here.</a></p>
+
+                <img src="https://i.ibb.co/20hgSFYm/regression-coefficients.jpg" width="650" height="400">
+
+                <p>
+                    The above model captures the features of the linear regression ranked by their contribution
+                    to the prediction of revenue. All coefficients are shown as absolute values. The bar graph suggests
+                    that financial investment (budget) and audience appeal (popularity) are the primary drivers of movie revenue,
+                    followed by genre and release year as secondary factors.
+                </p>
+            </li>
+            <li>
+                <h3> Random Forest Model </h3>
+                <p>
+                    Our random forest model outperformed the other two models because it overcomes some of the pitfalls of linear regression and neural networks. First, random forests tend to work well on smaller datasets like our filtered movie dataset because of their bagging method for aggregation. Although this dataset was large when we sourced it, there are way less rows with both budget and revenue information. On the other hand, a neural network requires more data to prevent overfitting, especially on a regression problem with this much variance in the target. Also, the random forest may have been suitable for this dataset because the decision trees split on a threshold, eliminating the need for feature scaling. This also makes the random forest less susceptible to outliers because the decision for a given branch conditioned on a continuous feature happens on a hard split, based on the value of that feature. Also, the randomness involved in bagging helps to cancel out some noise like the variance in revenue.
+                </p>
+            </li>
+            <li>
+                <h3> Neural Network Model </h3>
+                <p>
+                    Our neural network model addresses many of the limitations seen in linear regression by effectively capturing the non-linear relationships inherent in movie revenue prediction. Unlike linear regression, which struggles with predicting the movie industry's high variance and outlier-dominated revenue patterns, this approach leverages multiple dense layers with ReLU (Rectified Linear Unit) activations to better model varying feature interactions - such as how a high-budget action film in English may perform much better than a low-budget art house film. The model incorporates regularization through dropout and L2 norms to prevent overfitting while maintaining the ability to generalize. By predicting log-transformed revenue values, it better handles the extreme dollar ranges typically seen in box office results. Performance metrics show steady decreases in both training and validation loss, with early stopping ensuring efficient convergence. However, some limitations still remain; the model still struggles with extreme outliers, which often depend on external factors like viral marketing or cultural trends that we can’t easily capture in our feature set. The MAE in log space translates to interpretable dollar-range predictions, though our confidence intervals could be further refined to give a more reliable estimate. Future improvements could incorporate additional features like marketing spend or web scraping tools, and potentially hybrid modeling approaches to better capture categorical data nuances. While this neural network outperforms linear regression through its ability to better capture non-linear relationships, there remains room to enhance its accuracy for outlier cases either through more sophisticated neural net architectures or through more enriched efforts toward feature engineering.
+                </p>
+                <p>If the following embed does not show an image, please <a href="https://drive.google.com/file/d/1DPHa-8J84p-fzQ_ApDJC5Mbl0lGBZu0P/view?usp=sharing" target="_blank">click here.</a></p>
+                <img src="https://i.ibb.co/NgWBYgNQ/nn-mae-and-loss-plot.jpg" width="600" height="300" frameborder="0">
+                <p>
+                    The training and validation loss curves (using MSE criterion) show steady convergence, with both metrics decreasing sharply in early epochs before plateauing, indicating effective learning without too severe overfitting. The close alignment between training and validation loss suggests seemingly proper regularization (which was done with dropout and an L2 norm) and sufficient data. However, the final plateau implies diminishing returns beyond a certain epoch count, meaning 30-50 epochs is all that's needed.
+                </p>
+                <p>
+                    Residual error reflects inherent limitations in predicting extreme outliers (e.g., viral hits or flops), likely due to unmeasured factors like marketing or cultural timing.
+                </p>
+            </li>
+        </ul>
+
+      <h2>
+        4.4: Next Steps
+      </h2>
+      <p>
+        Our results, while moderately successful, demonstrated potential for future improvement. Our recent tests suggest that XGBoost ensembles may outperform some of our current models, as they handle high revenue variance better and more accurately fit outliers. We could also enrich our original feature set with features like YouTube trailer views, likes, and critic ratings. These features may even improve upon our original linear model, leading to a greater R2 value. We would also incorporate temporal features, such as the movie’s release date and the time between the first announcement and the actual premiere. Lastly, we will apply rigorous data preprocessing and feature engineering methods to ensure variables are on comparable scales. In our implementation of these next steps, we aim to further increase the predictive accuracy of our model to the level of highly practical predictions.
+      </p>
+    </section>
+
+    <section class="references-header">
+      <h1>References</h1>
+    </section>
+
+    <section class="references-list">
+      <ol>
+        <li>
+          <p>
+            Quader, N., et al. “A Machine Learning Approach to Predict Movie Box-Office Success.”
+            IEEE Xplore, 1 Dec. 2017,
+            <a href="ieeexplore.ieee.org/document/8281839">
+              ieeexplore.ieee.org/document/8281839
+            </a>.
+          </p>
+        </li>
+        <li>
+          him, Steve, and Mohammad Pourhomayoun. Predicting Movie Market Revenue Using Social Media Data.
+          1 Aug. 2017, pp. 478–484,
+          <a href="ieeexplore.ieee.org/abstract/document/8102973">
+            ieeexplore.ieee.org/abstract/document/8102973
+          </a>,
+          <a href="https://doi.org/10.1109/iri.2017.68">
+            https://doi.org/10.1109/iri.2017.68
+          </a>.
+          Accessed 21 Feb. 2025.
+        </li>
+        <li>
+          Ahmad, Ibrahim Said, et al. “Movie Revenue Prediction Based on Purchase Intention Mining Using
+          YouTube Trailer Reviews.” Information Processing & Management, vol. 57, no. 5, 1 Sept. 2020, p.
+          102278,
+          <a href="www.sciencedirect.com/science/article/abs/pii/S0306457319309501">
+            www.sciencedirect.com/science/article/abs/pii/S0306457319309501
+          </a>,
+          <a href="https://doi.org/10.1016/j.ipm.2020.102278">
+            https://doi.org/10.1016/j.ipm.2020.102278
+          </a>
+        </li>
+        <li>
+          Rounak Banik. The Movies Dataset. Kaggle.
+          <a href="https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset">
+            https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset
+          </a>
+        </li>
+      </ol>
+    </section>
+
+    <hr>
+
+    <section class="contributions-header">
+      <h1>Proposal Contributions</h1>
+    </section>
+
+    <section>
+      <table>
+        <tr>
+          <td>Dylan Bruce</td>
+          <td>Timotheus James</td>
+          <td>Vikrant Talwar</td>
+          <td>Alexander Thorne</td>
+          <td>Tyler Morgan</td>
+        </tr>
+        <tr>
+          <td> <!-- DB -->
+            Created website final report page,
+            created Neural Network Model,
+            calculated NN model statistics & matplotlib visualizations,
+            wrote NN model report sections,
+            updated past report sections,
+            created majority of presentation slides
+          </td>
+          <td> <!-- TJ -->
+            Implemented random forest model and visual layout of the actual vs. predicted results
+          </td>
+          <td> <!-- VT -->
+            Proofread analysis, provided goals for improvement in future, and wrote Readme.md
+          </td>
+          <td> <!-- AT -->
+            Extensive proofreading,
+            fact checking,
+            some presentation slides,
+            additional data scraping
+        </td>
+          <td> <!-- TM -->
+            Dataset exploration, feature engineering, final report and presentation
+          </td>
+        </tr>
+      </table>
+    </section>
+
+    <hr>
+
+    <section class="contributions-header">
+      <h1>Gantt Chart</h1>
+    </section>
+
+    <section>
+      <a href="https://docs.google.com/spreadsheets/d/1vUs6afYWUMlOmoXVNTkmUfqeVQ_IDode/edit?usp=sharing&ouid=106129173969591465156&rtpof=true&sd=true">
+        Click to access project Gantt Chart
+      </a>
+    </section>
+
+    <footer class="site-footer">
+      <span class="site-footer-credits">
+        <p>
+          This page was created with <a href="https://pages.github.com">GitHub Pages</a>.
+        </p>
+        <p>
+          Made by Dylan Bruce, Timotheus James, Vikrant Talwar, Alexander Thorne, and Tyler Morgan with (╯°□°）╯︵ ┻━┻.
+        </p>
+        <p>
+          Website created using the following template: <a href="https://github.com/pages-themes/cayman">Cayman</a>.
+        </p>
+      </span>
+
+      {% if site.github.is_project_page %}
+      <span class="site-footer-owner"><a href="{{ site.github.repository_url }}">{{ site.github.repository_name }}</a> is maintained by <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a>.</span>
+      {% endif %}
+    </footer>
+  </main>
+</body>
+</html>

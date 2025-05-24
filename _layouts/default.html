@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: 'en-US' }}">
+<head>
+  <meta charset="UTF-8">
+  <title>Movie Success Prediction: Home</title>
+  <link rel="icon" type="image/png" href="./popcorn-png-9432.png">
+
+{% seo %}
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+  {% include head-custom.html %}
+
+  <style>
+    body {
+      display: flex;
+      margin: 0;
+    }
+
+    .main-content {
+      color: #000000
+    }
+
+    .page-header {
+    padding: 50px 0;
+    text-align: center;
+    color: white;
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.15);
+
+    border-radius: 25px;
+    
+    width: 100%;
+    position: relative;
+    left: 0;
+    right: 0;
+    margin: 0;
+    }
+
+    .page-header .project-name {
+    color: white;
+    }
+
+    .page-header .project-tagline {
+      color: white;
+    }
+
+    .about-section {
+      margin-top: 40px;
+    }
+
+    .sidebar {
+      width: 250px;
+      height: 100vh;
+      background-color: #157878;
+      padding: 20px;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      top: 0;
+      left: 0;
+      color: white;
+    }
+
+    .sidebar h2 {
+      text-align: center;
+      color: white;
+    }
+
+    .sidebar a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      margin: 15px 0;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .sidebar a:hover {
+      background-color: #1e8c9e;
+    }
+
+    .main-content {
+      margin-left: 270px; /* Add space for sidebar */
+      padding: 20px;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+  <!-- Sidebar Navigation -->
+  <div class="sidebar">
+    <h2>Navigation</h2>
+    <a href="./index.html">Home</a>
+    <a href="./proposalmd.html">Proposal</a>
+    <a href="./midtermmd.html">Midterm Checkpoint</a>
+    <a href="./finalmd.html">Final Report</a>
+  </div>
+
+  <main id="content" class="main-content" role="main">
+    <header class="page-header" role="banner">
+      <h1 class="project-name">Movie Success Prediction Model</h1>
+      <h2 class="project-tagline">Analyzing the factors that drive movie success using machine learning and data-driven insights.</h2>
+      {% if site.github.is_project_page %}
+      <a href="{{ site.github.repository_url }}" class="btn">View on GitHub</a>
+      {% endif %}
+    </header>
+
+    <section class="about-section">
+      <h2>About the Project</h2>
+      <p>
+        This project explores how various factors contribute
+        to a movie's success. By analyzing features like
+        budget, revenue, and genres, we aim
+        to build predictive machine learning models that can accurately
+        forecast box office performance in the form of revenue.
+      </p>
+    </section>
+
+    <section>
+      <h2>Key Features</h2>
+      <ul>
+        <li>Data preprocessing, including cleaning, transformation, and dimensionality reduction</li>
+        <li>Machine learning models for predicting box office revenue and critical reception</li>
+        <li>Feature analysis and visualization to understand key contributors to movie success</li>
+      </ul>
+    </section>
+
+    <footer class="site-footer">
+      <span class="site-footer-credits">
+        <p>
+          This page was created with <a href="https://pages.github.com">GitHub Pages</a>.
+        </p>
+        <p>
+          Made by Dylan Bruce, Timotheus James, Vikrant Talwar, Alexander Thorne, and Tyler Morgan with (╯°□°）╯︵ ┻━┻.
+        </p>
+        <p>
+          Website created using the following template: <a href="https://github.com/pages-themes/cayman">Cayman</a>.
+        </p>
+      </span>
+      {% if site.github.is_project_page %}
+      <span class="site-footer-owner">
+        <a href="{{ site.github.repository_url }}">{{ site.github.repository_name }}</a>
+        is maintained by
+        <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a>.
+      </span>
+      {% endif %}
+    </footer>
+  </main>
+</body>
+</html>
