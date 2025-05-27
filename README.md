@@ -1,7 +1,7 @@
 # Movie-Success-Prediction
 
 ## Website Link
-Navigate to the following link to access this repository's GitHub Page: https://github.gatech.edu/pages/dbruce32/Movie-Success-Prediction/
+Navigate to the following link to access this repository's GitHub Page: https://dbruce32.github.io/Movie-Success-Prediction/
 
 ## Directories and Files
 1. /ML Algorithms/: Contains the sole dataset used to train the models along with the ML algorithms used in their respective Jupyter Notebooks
