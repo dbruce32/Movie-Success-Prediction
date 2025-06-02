@@ -4,6 +4,7 @@
 Navigate to the following link to access this repository's GitHub Page: https://github.gatech.edu/pages/dbruce32/Movie-Success-Prediction/
 
 ## Directories and Files
+```
 Movie-Success-Prediction/
 ├── .github/
 │   └── workflows/
@@ -20,3 +21,4 @@ Movie-Success-Prediction/
 │   ├── neural_net.ipynb            # Feedforward Neural Network with architecture definition and prediction routine
 │   └── movies_metadata.csv         # Main dataset used to train all ML models
 ├── _layouts/                       # Contains website structure
+```
