@@ -1,7 +1,7 @@
 # Movie-Success-Prediction
 
 ## Website Link
-Navigate to the following link to access this repository's GitHub Page: https://github.gatech.edu/pages/dbruce32/Movie-Success-Prediction/
+Navigate to the following link to access this repository's GitHub Page: https://dbruce32.github.io/Movie-Success-Prediction/
 
 ## Directories and Files
 ```
